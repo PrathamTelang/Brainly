@@ -13,3 +13,10 @@ const UserSchema = new Schema({
 });
 
 export const UserModel = model("User", UserSchema);
+
+const ContentSchema = new Schema({
+  title: String,
+  link: String,
+  type: String,
+  tags: String,
+})
