@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import jwt from "jsonwebtoken"
-import { UserModel } from "./db";
+import { ContentModel, UserModel } from "./db";
+import { userMiddleware } from "./middleware";
 dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
@@ -63,25 +64,37 @@ app.post("/api/v1/signin", async (req, res) => {
 } 
 })
 
-app.post("api/v1/content", (req, res) => {
+app.post("/api/v1/content", userMiddleware, async (req, res) => {
+    const link = req.body.link;
+    const title = req.body.title;
+    await ContentModel.create({
+        link,
+        title,
+        //@ts-ignore
+        userId: req.userId,
+        tags: [],
+    })
+
+    res.json({
+        message: "Content added"
+    })
+})
+
+app.get("/api/v1/content", (req, res) => {
     
 })
 
-app.get("api/v1/content", (req, res) => {
+
+app.delete("/api/v1/content", (req, res) => {
     
 })
 
 
-app.delete("api/v1/content", (req, res) => {
+app.post("/api/v1/brain/share", (req, res) => {
     
 })
 
-
-app.post("api/v1/brain/share", (req, res) => {
-    
-})
-
-app.post("api/v1/brain/:shareLink", (req, res) => {
+app.post("/api/v1/brain/:shareLink", (req, res) => {
     
 })
 
