@@ -17,8 +17,20 @@ function App() {
       size='sm' text='Pink'  
       onClick={() => {}} 
     />
-    <Button  variant='secondary' size='md' text='Black' onClick={() => {}} />
-    <Button variant='secondary' size='lg' text='SYSTEMATIC' onClick={() => {}} />
+    <Button 
+      startIcon={<PlusIcon size='md'/>}
+      endIcon={<ShareIcon size='md'/>}  
+      variant='secondary' 
+      size='md' 
+      text='Black' 
+      onClick={() => {}} />
+    <Button 
+      startIcon={<PlusIcon size='lg'/>}
+      endIcon={<ShareIcon size='lg'/>} 
+      variant='secondary' 
+      size='lg' 
+      text='SYSTEMATIC' 
+      onClick={() => {}} />
     </>
   )
 }
