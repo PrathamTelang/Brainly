@@ -20,7 +20,7 @@ const sizeStyles = {
     "lg": "px-12 py-3",
 }
 
-const defaultStyles = "rounded-md flex gap-1 items-center justify-center"
+const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-pointer"
 
 export const Button = (props: ButtonProps) => {
     return <button className={`${variantStyles [props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`} >

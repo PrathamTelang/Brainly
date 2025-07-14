@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
+
 @theme {
-    --color-primaryPink: #FF3366;
+  --color-primaryPink: #FF3366;
 }
 
-body{
-    background: #0A0A0A;
+body {
+  background: #0A0A0A;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-optical-sizing: auto;
 }

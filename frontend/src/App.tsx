@@ -14,11 +14,11 @@ function App() {
       startIcon={<PlusIcon size='md'/>}
       endIcon={<ShareIcon size='md'/>}
       variant='primary' 
-      size='sm' text='pink'  
+      size='sm' text='Pink'  
       onClick={() => {}} 
     />
-    <Button  variant='secondary' size='md' text='black' onClick={() => {}} />
-    <Button variant='secondary' size='lg' text='black' onClick={() => {}} />
+    <Button  variant='secondary' size='md' text='Black' onClick={() => {}} />
+    <Button variant='secondary' size='lg' text='SYSTEMATIC' onClick={() => {}} />
     </>
   )
 }
