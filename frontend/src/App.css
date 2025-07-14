@@ -1,1 +1,8 @@
 @import "tailwindcss";
+@theme {
+    --color-primaryPink: #FF3366;
+}
+
+body{
+    background: #0A0A0A;
+}
