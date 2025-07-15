@@ -1,0 +1,51 @@
+import { PlusIcon } from "../icons/PlusIcon";
+import { ShareIcon } from "../icons/ShareIcon";
+
+interface CardProps {
+    title: string;
+    link: string;
+    type: "twitter" | "youtube";
+}
+
+export function Card({title, link, type}: CardProps) {
+    return <div className="text-white w-96 p-2">
+        <div className="flex justify-between text-lg h-10">
+            <div className="flex items-center justify-center gap-2">
+                <div className="text-primaryPink">
+                    <PlusIcon size='lg'/>
+                </div>
+               {title}
+            </div>
+            <div className="flex items-center justify-center gap-2">
+                <div className="text-[#747474] cursor-pointer">
+                    <a href={link} target="_blank">
+                        <ShareIcon size='lg'/>
+                    </a>
+                    </div>
+                <div className="text-[#747474] cursor-pointer">
+                    <ShareIcon size='lg'/>
+                </div>
+            </div>
+        </div>
+        <div className="">
+            {type === "youtube"  && 
+            <iframe
+            src={link.replace("watch", "embed").replace("?v=", "/")}
+            className="w-full"
+            width="560"
+            height="200"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            ></iframe>}
+
+            {type === "twitter" &&
+                <blockquote className="twitter-tweet">
+                <a href={link.replace("x.com", "twitter.com")}></a> 
+                </blockquote>
+            }
+        </div>
+    </div>
+}
