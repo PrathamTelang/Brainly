@@ -109,24 +109,64 @@ app.delete("/api/v1/content", userMiddleware, async (req, res) => {
 app.post("/api/v1/brain/share", userMiddleware, async (req, res) => {
     const share = req.body.share;
     if (share) {
+        const existingLink = await LinkModel.findOne({
+            //@ts-ignore
+            userId: req.userId
+        })
+        if (existingLink) {
+            res.json({
+                hash: existingLink.hash
+            })
+            return
+        }
+        const hash= random(10);
         await LinkModel.create({
             //@ts-ignore
             userId: req.userId,
-            hash: random(10)
+            hash: hash
         })
+        res.json({
+            hash
+        })
+        
+
     } else {
         await LinkModel.deleteOne({
             //@ts-ignore
             userId: req.userId
         })
-    }
-    res.json({
-        message: "Updated shareable link"
+        res.json({
+        message: "Link Removed"
     })
+    }
+    
 })
 
-app.post("/api/v1/brain/:shareLink", (req, res) => {
-    
+app.get("/api/v1/brain/:shareLink", async (req, res) => {
+    const hash = req.params.shareLink
+
+    const link = await LinkModel.findOne({
+        hash: hash,
+    })
+    if (!link) {
+        res.status(411).json({
+            message: "Sorry, icorrect input"
+        })
+        return
+    }
+
+    const content = await ContentModel.find({
+        userId: link.userId
+    })
+
+    const user = await UserModel.findOne({
+        _id: link.userId
+    })
+
+    res.json({
+        username: user?.username,
+        content: content
+    })
 })
 
 
