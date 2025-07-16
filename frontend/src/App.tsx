@@ -6,16 +6,23 @@ import { ShareIcon } from './icons/ShareIcon'
 import { Card } from './components/Card'
 import { CreateContentModal } from './components/CreateContentModal'
 import { useState } from 'react'
+import { Sidebar } from './components/Sidebar'
 
 function App() {
 const [modalOpen, setModalOpen] = useState(false)
   return (
-    <>
-    <CreateContentModal open={modalOpen} onClose={() => {
-      setModalOpen(false)
-    }}/>
-        <div className='flex justify-end gap-2 py-8'>
-          <Button 
+    <div className='flex'>
+    <div>
+      <Sidebar/>
+    </div>
+        <div className='ml-72'>
+          <CreateContentModal open={modalOpen} onClose={() => {
+        setModalOpen(false)
+        }}/>
+        <div className='flex justify-between gap-2 py-8'>
+          <h1 className='text-3xl text-white'>All Notes</h1>
+          <div className='flex gap-2'>
+            <Button 
           startIcon={<PlusIcon size='lg'/>}
           variant='primary' 
           size='lg' text='Share Brain'  
@@ -29,6 +36,7 @@ const [modalOpen, setModalOpen] = useState(false)
           onClick={() => {
             setModalOpen(true)
           }} />
+          </div>
         </div>
 
 
@@ -42,7 +50,8 @@ const [modalOpen, setModalOpen] = useState(false)
         <Card type='twitter' link='https://x.com/elonmusk/status/1944848819562406008' title='first tweet'/>
         <Card type='youtube' link='https://www.youtube.com/watch?v=ShYKkPPhOoc' title='first video'/>
       </div>
-    </>
+        </div>
+    </div>
     
   )
 }
