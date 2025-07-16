@@ -1,3 +1,4 @@
+import { DeleteIcon } from "../icons/DeleteIcon";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 
@@ -8,8 +9,8 @@ interface CardProps {
 }
 
 export function Card({title, link, type}: CardProps) {
-    return <div className="text-white w-96 p-2">
-        <div className="flex justify-between text-lg h-10">
+    return <div className="text-white w-96 p-2 max-h-max">
+        <div className="flex justify-between text-lg h-10 pb-4">
             <div className="flex items-center justify-center gap-2">
                 <div className="text-primaryPink">
                     <PlusIcon size='lg'/>
@@ -23,7 +24,7 @@ export function Card({title, link, type}: CardProps) {
                     </a>
                     </div>
                 <div className="text-[#747474] cursor-pointer">
-                    <ShareIcon size='lg'/>
+                    <DeleteIcon size='lg'/>
                 </div>
             </div>
         </div>

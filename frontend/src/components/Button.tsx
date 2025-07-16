@@ -6,12 +6,12 @@ export interface ButtonProps {
     text: string;
     startIcon?: ReactElement;
     endIcon?: ReactElement;
-    onClick: () => void
+    onClick?: () => void
 }
 
 const variantStyles = {
     "primary": "bg-primaryPink text-black",
-    "secondary": "bg-black text-white" 
+    "secondary": " text-white" 
 }
 
 const sizeStyles = {
@@ -23,7 +23,7 @@ const sizeStyles = {
 const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-pointer"
 
 export const Button = (props: ButtonProps) => {
-    return <button className={`${variantStyles [props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`} >
+    return <button onClick={props.onClick} className={`${variantStyles [props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`} >
         {props.startIcon}
         {props.text}
         {props.endIcon}
