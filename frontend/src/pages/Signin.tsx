@@ -14,8 +14,8 @@ export default function SignIn() {
           Start organizing your second brain today.
         </p>
         <form className="space-y-4">
-          <Input placeholder="Username" onChange={() => {}} />
-          <Input placeholder="Password" onChange={() => {}} />
+          <Input placeholder="Username" />
+          <Input placeholder="Password"/>
           <Button
             variant="primary"
             text="Sign In"

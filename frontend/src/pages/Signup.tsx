@@ -1,7 +1,27 @@
+import { useRef } from "react";
 import { Button } from "../components/Button";
 import { Input } from "../components/Input";
+import { BACKEND_URL } from "../config";
+import axios from "axios";
 
 export default function SignUp() {
+    const usernameRef = useRef<HTMLInputElement>(null);
+    const passwordRef = useRef<HTMLInputElement>(null); 
+    
+
+        async function signup() {
+                const username = usernameRef.current?.value;
+                const password = passwordRef.current?.value;
+                await axios.post(`${BACKEND_URL + "/api/v1/signup"}`, {
+                data: {
+                    username,
+                    password
+                }
+            })
+            alert("You have signed in")
+            }
+
+
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-[#0A0A0A] text-white overflow-hidden px-4 py-10">
       {/* Grid background */}
@@ -17,15 +37,14 @@ export default function SignUp() {
         </p>
 
         <form className="space-y-5">
-          <Input placeholder="Username" onChange={() => {}} />
-          <Input placeholder="Password" onChange={() => {}} />
-
+          <Input reference={usernameRef} placeholder="Username" />
+          <Input reference={passwordRef} placeholder="Password" />
           <Button
             variant="primary"
             text="Sign Up"
             size="lg"
             fullWidth={true}
-            onClick={() => {}}
+            onClick={signup}
           />
         </form>
 
