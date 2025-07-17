@@ -25,7 +25,7 @@ export default function SignUp() {
     }
   }
 );
-
+  window.location.href = "/dashboard";
 
     alert("You have signed in");
   } catch (error) {

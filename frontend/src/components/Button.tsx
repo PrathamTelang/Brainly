@@ -24,11 +24,17 @@ const sizeStyles = {
 const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-pointer"
 
 export const Button = (props: ButtonProps) => {
-    return <button onClick={props.onClick} className={`${variantStyles [props.variant]} ${defaultStyles} ${sizeStyles[props.size]} ${props.fullWidth ? " w-full" : " "} `} >
-        {props.startIcon}
-        {props.text}
-        {props.endIcon}
-    </button>
+    return (
+  <button
+    type="button" // 👈 Prevents default form submit behavior
+    onClick={props.onClick}
+    className={`${variantStyles[props.variant]} ${defaultStyles} ${sizeStyles[props.size]} ${props.fullWidth ? " w-full" : " "}`}
+  >
+    {props.startIcon}
+    {props.text}
+    {props.endIcon}
+  </button>
+);
 }
 
 <Button variant='primary' size='md' text='hello' onClick={() => {}} />
