@@ -7,7 +7,7 @@ export function Sidebar () {
         <h1 className="text-3xl text-primaryPink mt-3">
             SECOND BRAIN
         </h1>
-        <div className="pt-4 ">
+        <div className="pt-8 ">
             <SidebarItem text="Twitter" icon={<TwitterIcon size="lg"/>} bgColor="bg-[#00E599]" />
             <SidebarItem text="Youtube" icon={<YoutubeIcon size="lg"/>} bgColor="bg-[#FFD91A]" />
             <SidebarItem text="Document" icon={<TwitterIcon size="lg"/>} bgColor="bg-[#FF7733]" />

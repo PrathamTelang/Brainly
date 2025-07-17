@@ -1,5 +1,6 @@
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
+import { Input } from "./Input";
 
 export function CreateContentModal({open, onClose}) {
 
@@ -23,19 +24,14 @@ export function CreateContentModal({open, onClose}) {
                             <Button 
                             variant="primary" 
                             text="Submit" 
-                            size="lg" 
+                            size="lg"
+                            fullWidth={true} 
                             onClick={() => {}}
                             />
                         </div>
                     </div>
-                    
             </div>
         }
     </div>
 }
 
-function Input({onChange, placeholder}: {onChange: () => void}) {
-    return <div>
-        <input placeholder={placeholder} type={"text"} className="h-14 w-full px-4 py-2 text-white border-[#181818] border-y-2 my-2 " onChange={onChange} />
-    </div>
-}

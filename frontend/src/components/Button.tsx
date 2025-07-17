@@ -7,6 +7,7 @@ export interface ButtonProps {
     startIcon?: ReactElement;
     endIcon?: ReactElement;
     onClick?: () => void
+    fullWidth?: boolean
 }
 
 const variantStyles = {
@@ -23,7 +24,7 @@ const sizeStyles = {
 const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-pointer"
 
 export const Button = (props: ButtonProps) => {
-    return <button onClick={props.onClick} className={`${variantStyles [props.variant]} ${defaultStyles} ${sizeStyles[props.size]}`} >
+    return <button onClick={props.onClick} className={`${variantStyles [props.variant]} ${defaultStyles} ${sizeStyles[props.size]} ${props.fullWidth ? " w-full" : " "} `} >
         {props.startIcon}
         {props.text}
         {props.endIcon}
