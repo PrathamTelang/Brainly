@@ -6,21 +6,24 @@ import { Card } from '../components/Card'
 import { CreateContentModal } from '../components/CreateContentModal'
 import { useState } from 'react'
 import { Sidebar } from '../components/Sidebar'
+import { useContent } from '../hooks/useContent'
 
 export function Dashboard() {
 const [modalOpen, setModalOpen] = useState(false)
+const contents = useContent();
+
   return (
-    <div className='flex'>
+    <div className='flex  w-screen'>
     <div>
       <Sidebar/>
     </div>
-        <div className='ml-72'>
+        <div className=''>
           <CreateContentModal open={modalOpen} onClose={() => {
         setModalOpen(false)
         }}/>
-        <div className='flex justify-between gap-2 py-8'>
+        <div className='flex w-screen pl-72 py-8 justify-between'>
           <h1 className='text-3xl text-white'>All Notes</h1>
-          <div className='flex gap-2'>
+          <div className='flex gap-2 '>
             <Button 
           startIcon={<PlusIcon size='lg'/>}
           variant='primary' 
@@ -40,19 +43,12 @@ const [modalOpen, setModalOpen] = useState(false)
 
 
       <div className='flex flex-wrap gap-10 max-w-screen'>
-        <Card type='twitter' link='https://x.com/elonmusk/status/1944848819562406008' title='First Tweet'/>
-        <Card type='youtube' link='https://www.youtube.com/watch?v=ShYKkPPhOoc' title='first video'/>
-        <Card type='twitter' link='https://x.com/elonmusk/status/1944848819562406008' title='first tweet'/>
-        <Card type='youtube' link='https://www.youtube.com/watch?v=ShYKkPPhOoc' title='first video'/>
-        <Card type='twitter' link='https://x.com/elonmusk/status/1944848819562406008' title='First Tweet'/>
-        <Card type='youtube' link='https://www.youtube.com/watch?v=ShYKkPPhOoc' title='first video'/>
-        <Card type='twitter' link='https://x.com/elonmusk/status/1944848819562406008' title='first tweet'/>
-        <Card type='youtube' link='https://www.youtube.com/watch?v=ShYKkPPhOoc' title='first video'/>
+        {contents.map(({type, link, title}) => <Card type={type} link={link} title={title} /> )}
       </div>
         </div>
     </div>
     
   )
 }
-
+ 
 

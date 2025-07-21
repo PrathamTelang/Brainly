@@ -26,7 +26,7 @@ const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-
 export const Button = (props: ButtonProps) => {
     return (
   <button
-    type="button" // 👈 Prevents default form submit behavior
+    type="button" 
     onClick={props.onClick}
     className={`${variantStyles[props.variant]} ${defaultStyles} ${sizeStyles[props.size]} ${props.fullWidth ? " w-full" : " "}`}
   >
