@@ -1,8 +1,16 @@
+import { useRef } from "react";
 import { CrossIcon } from "../icons/CrossIcon";
 import { Button } from "./Button";
 import { Input } from "./Input";
 
 export function CreateContentModal({open, onClose}) {
+    const titleRef = useRef<HTMLInputElement>(null);
+    const linkRef = useRef<HTMLInputElement>(null);
+
+    function addContent() {
+        const title = titleRef.current?.value;
+        const link = linkRef.current?.value;
+    }
 
     return <div>
         {open && 
@@ -17,8 +25,8 @@ export function CreateContentModal({open, onClose}) {
                             </div>
                         </div>
                         <div className="mt-2 ">
-                        <Input placeholder={"Title"} />
-                        <Input placeholder={"Link"} />
+                        <Input reference={titleRef} placeholder={"Title"} />
+                        <Input reference={linkRef} placeholder={"Link"} />
                         </div>
                         <div className="flex justify-center mt-4">
                             <Button 
@@ -26,7 +34,7 @@ export function CreateContentModal({open, onClose}) {
                             text="Submit" 
                             size="lg"
                             fullWidth={true} 
-                            onClick={() => {}}
+                            onClick={addContent} 
                             />
                         </div>
                     </div>
