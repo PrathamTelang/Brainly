@@ -1,35 +1,36 @@
-import axios from "axios";
+// hooks/useContent.ts
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { BACKEND_URL } from "../config";
 
 type Content = {
-  type: "youtube" | "twitter";
-  link: string;
   title: string;
+  link: string;
+  type: string;
 };
 
-export function useContent(): Content[] {
+export function useContent() {
   const [contents, setContents] = useState<Content[]>([]);
 
-  useEffect(() => {
-    axios
-      .get(`${BACKEND_URL}/api/v1/content`, {
+  async function fetchContent() {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/v1/content`, {
         headers: {
           Authorization: localStorage.getItem("token") || "",
         },
-      })
-      .then((response) => {
-        if (response.data?.content) {
-          setContents(response.data.content);
-        } else {
-          setContents([]);
-        }
-      })
-      .catch((err) => {
-        console.error("Failed to fetch content:", err);
-        setContents([]); // Fallback to empty array on error
       });
+      setContents(response.data);
+    } catch (err) {
+      console.error("Failed to fetch contents", err);
+    }
+  }
+
+  useEffect(() => {
+    fetchContent();
   }, []);
 
-  return contents;
+  return {
+    contents,
+    refresh: fetchContent, // <- call this after adding content
+  };
 }

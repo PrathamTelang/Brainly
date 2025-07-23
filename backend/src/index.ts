@@ -65,22 +65,28 @@ app.post("/api/v1/signin", async (req, res) => {
     })
 } 
 })
-
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
-    const link = req.body.link;
+    let link = req.body.link;
     const title = req.body.title;
+
+    // Replace x.com with twitter.com if needed
+    if (link.includes("x.com")) {
+        link = link.replace("x.com", "twitter.com");
+    }
+
     await ContentModel.create({
         link,
         title,
         //@ts-ignore
         userId: req.userId,
         tags: [],
-    })
+    });
 
     res.json({
         message: "Content added"
-    })
-})
+    });
+});
+
 
 app.get("/api/v1/content", userMiddleware, async (req, res) => {
     //@ts-ignore
