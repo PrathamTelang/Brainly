@@ -4,27 +4,19 @@ import { PlusIcon } from '../icons/PlusIcon'
 import { ShareIcon } from '../icons/ShareIcon'
 import { Card } from '../components/Card'
 import { CreateContentModal } from '../components/CreateContentModal'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Sidebar } from '../components/Sidebar'
 import { useContent } from '../hooks/useContent'
 
+
 export function Dashboard() {
-<<<<<<< HEAD
   const [modalOpen, setModalOpen] = useState(false);
-  const { contents, refresh } = useContent();
+  const {contents, refresh} = useContent();
 
-
-  // Optional: Refresh content every time the modal closes
   useEffect(() => {
-    if (!modalOpen) {
-      refresh();
-    }
-  }, [modalOpen]);
-  console.log(contents);
-=======
-const [modalOpen, setModalOpen] = useState(false)
-const contents = useContent();
->>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
+    refresh();
+  }, [modalOpen])
+
 
   return (
     <div className='flex  w-screen'>
@@ -55,9 +47,9 @@ const contents = useContent();
           </div>
         </div>
 
-<<<<<<< HEAD
+
         <div className="flex flex-wrap gap-10 max-w-screen pl-72">
-          {contents.map(({ _id, type, link, title }) => (
+          {contents && contents.map(({ _id, type, link, title }) => (
             <Card
               key={_id}
               type={type}
@@ -66,16 +58,11 @@ const contents = useContent();
             />
           ))}
         </div>
-=======
-
-      <div className='flex flex-wrap gap-10 max-w-screen'>
-        {contents.map(({type, link, title}) => <Card type={type} link={link} title={title} /> )}
->>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
       </div>
         </div>
-    </div>
-    
+
   )
 }
- 
+
+
 

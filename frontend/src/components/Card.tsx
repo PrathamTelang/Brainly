@@ -42,22 +42,13 @@ export function Card({title, link, type}: CardProps) {
             allowFullScreen
             ></iframe>}
 
-<<<<<<< HEAD
-        {type === "twitter" && (
-          <blockquote className="twitter-tweet">
-            <a href={link.replace("x.com", "twitter.com")}>
-              {title}
-            </a>
-          </blockquote>
-        )}
-      </div>
-=======
+
             {type === "twitter" &&
                 <blockquote className="twitter-tweet">
                 <a href={link.replace("x.com", "twitter.com")}></a> 
                 </blockquote>
             }
         </div>
->>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
+
     </div>
 }

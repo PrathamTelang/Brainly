@@ -11,54 +11,33 @@ enum ContentType {
   Twitter = "twitter",
 }
 
-type CreateContentModalProps = {
+interface CreateContentModalProps {
   open: boolean;
   onClose: () => void;
-};
+}
 
-export function CreateContentModal({ open, onClose }: CreateContentModalProps) {
-  const titleRef = useRef<HTMLInputElement>(null);
-  const linkRef = useRef<HTMLInputElement>(null);
-<<<<<<< HEAD
-=======
+export function CreateContentModal({open, onClose}: CreateContentModalProps) {
+    const titleRef = useRef<HTMLInputElement>(null);
+    const linkRef = useRef<HTMLInputElement>(null);
+    const [type, setType] = useState(ContentType.Youtube);
 
->>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
-  const [type, setType] = useState<ContentType>(ContentType.Youtube);
+    async function addContent() {
+        const title = titleRef.current?.value;
+        const link = linkRef.current?.value;
 
-  async function addContent() {
-    const title = titleRef.current?.value;
-    const link = linkRef.current?.value;
+        await axios.post(`${BACKEND_URL}/api/v1/content`, {
+            link,
+            title,
+            type
+        }, {
+            headers: {
+                "Authorization": localStorage.getItem("token")
+            }
+        })
 
-<<<<<<< HEAD
-  if (!title || !link) {
-    alert("Title and link are required.");
-    return;
-  }
-  
-  console.log("Title:", title);
-  console.log("Link:", link); 
-  try {
-    await axios.post(`${BACKEND_URL}/api/v1/content`, {
-      link, 
-      title,
-      type,
-=======
-    console.log("Title:", title);
-    console.log("Link:", link);
-    console.log("Type:", type); // Now you have the type from dropdown
+        onClose();
 
-    await axios.post(`${BACKEND_URL}/api/v1/content`, {
-        link,
-        title,
-        type,
->>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
-    }, {
-        headers: {
-            "Authorization": localStorage.getItem("token")
-        }
-    })
-
-  }
+    }
 
   return (
     <div>
