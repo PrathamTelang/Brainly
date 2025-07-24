@@ -3,10 +3,12 @@ import { Button } from "../components/Button";
 import { Input } from "../components/Input";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const usernameRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   async function signup() {
   const username = usernameRef.current?.value;
@@ -25,7 +27,7 @@ export default function SignUp() {
     }
   }
 );
-  window.location.href = "/dashboard";
+  navigate("/dashboard");
 
     alert("You have signed in");
   } catch (error) {
