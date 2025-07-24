@@ -20,9 +20,6 @@ type CreateContentModalProps = {
 export function CreateContentModal({ open, onClose, refresh }: CreateContentModalProps) {
   const titleRef = useRef<HTMLInputElement>(null);
   const linkRef = useRef<HTMLInputElement>(null);
-  
-
-
   const [type, setType] = useState<ContentType>(ContentType.Youtube);
 
 async function addContent() {
@@ -33,15 +30,12 @@ async function addContent() {
     alert("Title and link are required.");
     return;
   }
-
-  const cleanedLink = link.replace("x.com", "twitter.com");
-
+  
   console.log("Title:", title);
-  console.log("Link:", cleanedLink); // ✅ Make sure you're logging the cleaned link
-
+  console.log("Link:", link); 
   try {
     await axios.post(`${BACKEND_URL}/api/v1/content`, {
-      link: cleanedLink, // ✅ Must send cleaned link here
+      link, 
       title,
       type,
     }, {

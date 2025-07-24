@@ -14,12 +14,14 @@ export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
   const { contents, refresh } = useContent();
 
+
   // Optional: Refresh content every time the modal closes
   useEffect(() => {
     if (!modalOpen) {
       refresh();
     }
   }, [modalOpen]);
+  console.log(contents);
 
   return (
     <div className="flex w-screen">
@@ -60,14 +62,14 @@ export function Dashboard() {
         </div>
 
         <div className="flex flex-wrap gap-10 max-w-screen pl-72">
-          {contents.map(({ type, link, title }, index) => {
-            // Only allow "twitter" or "youtube" as type
-            const allowedTypes = ["twitter", "youtube"] as const;
-            const safeType = allowedTypes.includes(type as any) ? (type as "twitter" | "youtube") : "youtube";
-            return (
-              <Card key={`${type}-${link}-${index}`} type={safeType} link={link} title={title} />
-            );
-          })}
+          {contents.map(({ _id, type, link, title }) => (
+            <Card
+              key={_id}
+              type={type}
+              link={link}
+              title={title}
+            />
+          ))}
         </div>
       </div>
     </div>

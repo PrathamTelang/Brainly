@@ -69,19 +69,12 @@ useEffect(() => {
         )}
 
         {type === "twitter" && (
-  <blockquote className="twitter-tweet">
-    <a
-      href={link.replace("x.com", "twitter.com")}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {title}
-    </a>
-  </blockquote>
-)}
-
-
-        
+          <blockquote className="twitter-tweet">
+            <a href={link.replace("x.com", "twitter.com")}>
+              {title}
+            </a>
+          </blockquote>
+        )}
       </div>
     </div>
   );
