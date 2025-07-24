@@ -1,16 +1,15 @@
-import '../App.css';
-import { Button } from '../components/Button';
-import { PlusIcon } from '../icons/PlusIcon';
-import { ShareIcon } from '../icons/ShareIcon';
-import { Card } from '../components/Card';
-import { CreateContentModal } from '../components/CreateContentModal';
-import { useState, useEffect } from 'react';
-import { Sidebar } from '../components/Sidebar';
-import { useContent } from '../hooks/useContent';
-import axios from 'axios';
-import { BACKEND_URL } from '../config';
+import '../App.css'
+import { Button } from '../components/Button'
+import { PlusIcon } from '../icons/PlusIcon'
+import { ShareIcon } from '../icons/ShareIcon'
+import { Card } from '../components/Card'
+import { CreateContentModal } from '../components/CreateContentModal'
+import { useState } from 'react'
+import { Sidebar } from '../components/Sidebar'
+import { useContent } from '../hooks/useContent'
 
 export function Dashboard() {
+<<<<<<< HEAD
   const [modalOpen, setModalOpen] = useState(false);
   const { contents, refresh } = useContent();
 
@@ -22,45 +21,41 @@ export function Dashboard() {
     }
   }, [modalOpen]);
   console.log(contents);
+=======
+const [modalOpen, setModalOpen] = useState(false)
+const contents = useContent();
+>>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
 
   return (
-    <div className="flex w-screen">
-      <Sidebar />
-      <div>
-        {/* Pass refresh to modal */}
-        <CreateContentModal open={modalOpen} onClose={() => setModalOpen(false)} refresh={refresh} />
-
-        <div className="flex w-screen pl-72 py-8 justify-between">
-          <h1 className="text-3xl text-white">All Notes</h1>
-          <div className="flex gap-2">
-            <Button
-              startIcon={<PlusIcon size="lg" />}
-              variant="primary"
-              size="lg"
-              text="Share Brain"
-              onClick={async () => {
-                const response = await axios.post(
-                  `${BACKEND_URL}/api/v1/brain/share`,
-                  { share: true },
-                  {
-                    headers: {
-                      Authorization: localStorage.getItem('token') || '',
-                    },
-                  }
-                );
-                alert(`http://localhost:5173/share/${response.data.hash}`);
-              }}
-            />
-            <Button
-              startIcon={<ShareIcon size="lg" />}
-              variant="secondary"
-              size="lg"
-              text="Add Content"
-              onClick={() => setModalOpen(true)}
-            />
+    <div className='flex  w-screen'>
+    <div>
+      <Sidebar/>
+    </div>
+        <div className=''>
+          <CreateContentModal open={modalOpen} onClose={() => {
+        setModalOpen(false)
+        }}/>
+        <div className='flex w-screen pl-72 py-8 justify-between'>
+          <h1 className='text-3xl text-white'>All Notes</h1>
+          <div className='flex gap-2 '>
+            <Button 
+          startIcon={<PlusIcon size='lg'/>}
+          variant='primary' 
+          size='lg' text='Share Brain'  
+          onClick={() => {}} 
+          />
+          <Button 
+          startIcon={<ShareIcon size='lg'/>} 
+          variant='secondary' 
+          size='lg' 
+          text='Add Content' 
+          onClick={() => {
+            setModalOpen(true)
+          }} />
           </div>
         </div>
 
+<<<<<<< HEAD
         <div className="flex flex-wrap gap-10 max-w-screen pl-72">
           {contents.map(({ _id, type, link, title }) => (
             <Card
@@ -71,7 +66,16 @@ export function Dashboard() {
             />
           ))}
         </div>
+=======
+
+      <div className='flex flex-wrap gap-10 max-w-screen'>
+        {contents.map(({type, link, title}) => <Card type={type} link={link} title={title} /> )}
+>>>>>>> parent of 73c3a8e (Improve Twitter link handling and content refresh)
       </div>
+        </div>
     </div>
-  );
+    
+  )
 }
+ 
+
