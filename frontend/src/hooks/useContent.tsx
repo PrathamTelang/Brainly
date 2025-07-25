@@ -12,6 +12,7 @@ export function useContent() {
             }
         })
             .then((response) => {
+                console.log("Fetched content:", response.data);
                 setContents(response.data)
             })
             .catch((error) => {
