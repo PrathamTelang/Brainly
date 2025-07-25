@@ -33,7 +33,8 @@ export function Dashboard() {
             <Button 
           startIcon={<PlusIcon size='lg'/>}
           variant='primary' 
-          size='lg' text='Share Brain'  
+          size='lg' 
+          text='Share Brain'  
           onClick={() => {}} 
           />
           <Button 
@@ -47,14 +48,15 @@ export function Dashboard() {
           </div>
         </div>
 
-
         <div className="flex flex-wrap gap-10 max-w-screen pl-72">
           {contents && contents.map(({ _id, type, link, title }) => (
             <Card
               key={_id}
+              _id={_id}
               type={type}
               link={link}
               title={title}
+              onDelete={refresh}
             />
           ))}
         </div>

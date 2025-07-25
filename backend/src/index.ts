@@ -172,6 +172,24 @@ app.get("/api/v1/brain/:shareLink", async (req, res) => {
     })
 })
 
+app.post("/api/v1/content/delete", userMiddleware, async (req, res) => {
+    const contentId = req.body.contentId;
+    console.log("Delete request:", { contentId, userId: req.userId });
+    
+    const result = await ContentModel.deleteOne({
+        _id: contentId,
+        //@ts-ignore
+        userId: req.userId
+    })
+    
+    console.log("Delete result:", result);
+    res.json({
+        message: "content deleted",
+        deletedCount: result.deletedCount
+    })
+})
+
+
 
 export default app;
 

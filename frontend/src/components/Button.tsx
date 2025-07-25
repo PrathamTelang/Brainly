@@ -11,8 +11,8 @@ export interface ButtonProps {
 }
 
 const variantStyles = {
-    "primary": "bg-primaryPink text-black",
-    "secondary": " text-white" 
+    "primary": "bg-primaryPink text-black hover:bg-rose-400",
+    "secondary": "bg-none text-white hover:bg-neutral-900" 
 }
 
 const sizeStyles = {
@@ -21,7 +21,7 @@ const sizeStyles = {
     "lg": "px-12 py-3",
 }
 
-const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-pointer"
+const defaultStyles = "rounded-md flex gap-1 items-center justify-center cursor-pointer";
 
 export const Button = (props: ButtonProps) => {
     return (
@@ -37,4 +37,3 @@ export const Button = (props: ButtonProps) => {
 );
 }
 
-<Button variant='primary' size='md' text='hello' onClick={() => {}} />

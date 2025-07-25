@@ -1,12 +1,36 @@
+import axios from "axios";
 import { DeleteIcon } from "../icons/DeleteIcon";
 import { PlusIcon } from "../icons/PlusIcon";
 import { ShareIcon } from "../icons/ShareIcon";
 import { useEffect } from "react";
+import { BACKEND_URL } from "../config";
 
 interface CardProps {
     title: string;
     link: string;
     type: "twitter" | "youtube";
+    _id: string;
+    onDelete?: () => void;
+}
+
+function deleteCard(contentId: string, onDelete?: () => void) {
+    console.log("Delete card function called with ID:", contentId);
+    axios.post(`${BACKEND_URL}/api/v1/content/delete`, {
+        contentId: contentId
+    }, {
+        headers: {
+            "Authorization": localStorage.getItem("token")
+        }
+    })
+    .then(response => {
+        console.log("Content deleted:", response.data);
+        if (onDelete) {
+            onDelete(); // Trigger refresh
+        }
+    })
+    .catch(error => {
+        console.error("Error deleting content:", error);
+    });
 }
 
 // Helper function to convert YouTube URLs to embed format
@@ -34,7 +58,7 @@ function detectTypeFromUrl(url: string): "youtube" | "twitter" {
     return "youtube"; // default fallback
 }
 
-export function Card({title, link, type}: CardProps) {
+export function Card({title, link, type, _id, onDelete}: CardProps) {
     // Debug: Log the props to see what's being passed
     console.log("Card props:", { title, link, type });
 
@@ -48,7 +72,7 @@ export function Card({title, link, type}: CardProps) {
         }
     }, [actualType, link]);
 
-    return <div className="text-white w-96 p-2 max-h-max">
+    return <div className="text-white w-96 p-2 max-h-max bg-neutral-900 rounded-md shadow-lg pt-4">
         <div className="flex justify-between text-lg h-10 pb-4">
             <div className="flex items-center justify-center gap-2">
                 <div className="text-primaryPink">
@@ -57,12 +81,14 @@ export function Card({title, link, type}: CardProps) {
                {title}
             </div>
             <div className="flex items-center justify-center gap-2">
-                <div className="text-[#747474] cursor-pointer">
-                    <a href={link} target="_blank">
+                <div className="text-[#747474] cursor-pointer hover:text-neutral-400 transition-colors">
+                    <a href={link.startsWith('http') ? link : `https://${link}`} target="_blank" rel="noopener noreferrer">
                         <ShareIcon size='lg'/>
                     </a>
-                    </div>
-                <div className="text-[#747474] cursor-pointer">
+                </div>
+                <div 
+                onClick={() => deleteCard(_id, onDelete)} 
+                className="text-[#747474] cursor-pointer hover:text-primaryPink transition-colors">
                     <DeleteIcon size='lg'/>
                 </div>
             </div>
